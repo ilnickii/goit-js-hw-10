@@ -11,6 +11,8 @@ const catTemperament = document.querySelector('.cat-temperament');
 
 async function populateBreeds() {
   try {
+    breedSelect.style.display = 'none'; 
+    loader.style.display = 'block'; 
     const breeds = await fetchBreeds();
     breeds.forEach((breed) => {
       const option = document.createElement('option');
@@ -21,6 +23,9 @@ async function populateBreeds() {
   } catch (err) {
     console.error('Error fetching breeds:', err);
     showError();
+  } finally {
+    loader.style.display = 'none'; 
+    breedSelect.style.display = 'block';
   }
 }
 
